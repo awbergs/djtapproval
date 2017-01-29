@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  before_filter :set_approval_ratio
+  before_filter :set_approval_ratio, only: [:index]
 
   def index
   end

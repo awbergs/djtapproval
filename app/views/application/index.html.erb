@@ -1,3 +1,5 @@
+<div class='approval' style='width: <%= @approval_ratio %>%'><%= @approval_ratio %>%</div>
+<div class='disapproval' style='width: <%= 100 - @approval_ratio %>%'><%= 100 - @approval_ratio %>%</div>
 <%= form_tag('/save') do %>
   <label for='approve'>
     <input type='radio' id='approve' required=true name='approval' value=1 />
@@ -11,4 +13,5 @@
   <% if flash[:notice] %>
   <p><%= flash[:notice] %></p>
   <% end %>
+  <p><%= link_to 'How does this work?', '/info' %></p>
 <% end %>
