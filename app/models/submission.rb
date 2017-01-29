@@ -4,5 +4,8 @@ class Submission
 
   field :approval, type: Boolean
   field :ip_address, type: String
-  field :submitted_at, type: DateTime
+
+  def self.can_submit?(ip)
+    return !self.where(ip_address: ip).where(:created_at.gt => DateTime.current.utc - 1.day).any?
+  end
 end

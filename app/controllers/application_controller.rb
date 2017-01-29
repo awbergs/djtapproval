@@ -7,9 +7,13 @@ class ApplicationController < ActionController::Base
   end
 
   def save
-    #need to restrict voting to once per N period (1day, 1month?)
-    Submission.create(approval: params[:approval] == "1", ip_address: request.remote_ip)
-    flash[:notice] = 'Saved'
+    ip_address = request.remote_ip
+    if Submission.can_submit?(ip_address)
+      flash[:notice] = 'Saved'
+      Submission.create(approval: params[:approval] == "1", ip_address: request.remote_ip)
+    else
+      flash[:notice] = 'You must wait at least 24 hours between submissions.'
+    end
     redirect_to root_url
   end
 
