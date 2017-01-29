@@ -1,6 +1,12 @@
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+  function onSubmit(){
+    document.querySelector('#approval-form').submit();
+  }
+</script>
 <div class='approval' style='width: <%= @approval_ratio %>%'><%= @approval_ratio %>%</div>
 <div class='disapproval' style='width: <%= 100 - @approval_ratio %>%'><%= 100 - @approval_ratio %>%</div>
-<%= form_tag('/save') do %>
+<%= form_tag('/save', id: 'approval-form') do %>
   <label for='approve'>
     <input type='radio' id='approve' required=true name='approval' value=1 />
     I Approve
@@ -9,7 +15,7 @@
     <input type='radio' id='disapprove' required=true name='approval' value=0 />
     I Disapprove
   </label>
-  <%= submit_tag 'Submit' %>
+  <button type='submit' class="g-recaptcha" data-sitekey="6LfCfRMUAAAAALLUQhTiDjQFegxGuRfcjoON6pQ7" data-callback='onSubmit'>Submit</button>
   <% if flash[:notice] %>
   <p><%= flash[:notice] %></p>
   <% end %>
