@@ -35,14 +35,12 @@ class ApplicationController < ActionController::Base
   def validate_captcha
     response = HTTParty.post('https://www.google.com/recaptcha/api/siteverify', {
       body: {
-        secret: '6LfCfRMUAAAAAAvqhVLyVaUVYx5cqho_yepO7oT-',
+        secret: ENV["TRUMPAPPROVAL_RECAPTCHA_SECRET"],
         response: params["g-recaptcha-response"],
         remoteip: request.remote_ip
       }
     })
     resp = JSON.parse response.body
-    p resp
-    p resp["success"]
     return resp["success"]
   end
 end

@@ -15,7 +15,7 @@
     <input type='radio' id='disapprove' required=true name='approval' value=0 />
     I Disapprove
   </label>
-  <button type='submit' class="g-recaptcha" data-sitekey="6LfCfRMUAAAAALLUQhTiDjQFegxGuRfcjoON6pQ7" data-callback='onSubmit'>Submit</button>
+  <button type='submit' class="g-recaptcha" data-sitekey="<%= ENV["TRUMPAPPROVAL_RECAPTCHA_KEY"] %>" data-callback='onSubmit'>Submit</button>
   <% if flash[:notice] %>
   <p><%= flash[:notice] %></p>
   <% end %>
