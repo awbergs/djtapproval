@@ -4,8 +4,8 @@
     document.querySelector('#approval-form').submit();
   }
 </script>
-<div class='approval' style='width: <%= @approval_ratio %>%'><%= @approval_ratio %>%</div>
-<div class='disapproval' style='width: <%= 100 - @approval_ratio %>%'><%= 100 - @approval_ratio %>%</div>
+<div class='approval' style='width: <%= @approval_percentage %>%'><%= @approval_percentage %>%</div>
+<div class='disapproval' style='width: <%= 100 - @approval_percentage %>%'><%= 100 - @approval_percentage %>%</div>
 <%= form_tag('/save', id: 'approval-form') do %>
   <label for='approve'>
     <input type='radio' id='approve' required=true name='approval' value=1 />

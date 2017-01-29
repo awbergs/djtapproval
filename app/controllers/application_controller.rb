@@ -24,11 +24,11 @@ class ApplicationController < ActionController::Base
   private
 
   def set_approval_ratio
-    total = Submission.count
-    if total > 0
-      @approval_ratio = ((Submission.where(approval: true).count / total.to_f)*100).round(2)
+    submissions = Submission.where(:created_at.gt => DateTime.current.utc - 1.day)
+    if submissions.any?
+      @approval_percentage = ((submissions.where(approval: true).count / submissions.count.to_f)*100).round(2)
     else
-      @approval_ratio = 0
+      @approval_percentage = 50
     end
   end
 
