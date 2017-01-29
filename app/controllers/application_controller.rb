@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_approval_ratio, only: [:index]
 
   def index
+    @last_submission = Submission.where(ip_address:request.remote_ip).last
   end
 
   def save

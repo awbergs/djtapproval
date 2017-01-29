@@ -9,11 +9,11 @@
 <%= form_tag('/save', id: 'approval-form') do %>
   <p>President Donald J. Trump</p>
   <label for='approve'>
-    <input type='radio' id='approve' required=true name='approval' value=1 />
+    <input type='radio' id='approve' required=true name='approval' value=1 <%= "checked=checked" if @last_submission && @last_submission.approval %> />
     I Approve
   </label>
   <label for='disapprove'>
-    <input type='radio' id='disapprove' required=true name='approval' value=0 />
+    <input type='radio' id='disapprove' required=true name='approval' value=0 <%= "checked=checked" if @last_submission && !@last_submission.approval %> />
     I Disapprove
   </label>
   <button type='submit' class="g-recaptcha" data-sitekey="<%= ENV["TRUMPAPPROVAL_RECAPTCHA_KEY"] %>" data-callback='onSubmit'>Submit</button>
