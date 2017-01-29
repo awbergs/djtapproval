@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     ip_address = request.remote_ip
     if Submission.can_submit?(ip_address)
       if validate_captcha
-        flash[:notice] = 'Saved'
+        flash[:success] = 'Your vote has been counted. You can vote again in 24 hours.'
         Submission.create(approval: params[:approval] == "1", ip_address: request.remote_ip)
       else
         flash[:notice] = 'Invalid captcha'
@@ -24,9 +24,9 @@ class ApplicationController < ActionController::Base
   private
 
   def set_approval_ratio
-    submissions = Submission.where(:created_at.gt => DateTime.current.utc - 1.day)
-    if submissions.any?
-      @approval_percentage = ((submissions.where(approval: true).count / submissions.count.to_f)*100).round(2)
+    @submissions = Submission.where(:created_at.gt => DateTime.current.utc - 1.day)
+    if @submissions.any?
+      @approval_percentage = ((@submissions.where(approval: true).count / @submissions.count.to_f)*100).round(2)
     else
       @approval_percentage = 50
     end

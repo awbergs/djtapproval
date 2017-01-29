@@ -20,5 +20,9 @@
   <% if flash[:notice] %>
   <p><%= flash[:notice] %></p>
   <% end %>
+  <% if flash[:success] %>
+    <p class='vote-counted'><%= flash[:success] %></p>
+  <% end %>
   <p><%= link_to 'How does this work?', '/info' %></p>
+  <p><small><%= pluralize(@submissions.count, "vote") %> in the last 24 hours</small></p>
 <% end %>

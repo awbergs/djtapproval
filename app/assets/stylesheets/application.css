@@ -64,3 +64,8 @@ label {
 .footer p {
   margin: 5px 0;
 }
+.vote-counted {
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(0,255,0,.5);
+}
