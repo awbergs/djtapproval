@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   def save
     ip_address = request.remote_ip
-    if true #Submission.can_submit?(ip_address)
+    if Submission.can_submit?(ip_address)
       if validate_captcha
         flash[:notice] = 'Saved'
         Submission.create(approval: params[:approval] == "1", ip_address: request.remote_ip)
