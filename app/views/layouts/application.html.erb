@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TrumpApproval</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class='approval' style='width: <%= @approval_ratio %>%'><%= @approval_ratio %>%</div>
+    <div class='disapproval' style='width: <%= 100 - @approval_ratio %>%'><%= 100 - @approval_ratio %>%</div>
+    <%= yield %>
+  </body>
+</html>

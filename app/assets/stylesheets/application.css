@@ -1,0 +1,50 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+form {
+  padding: 20px;
+  background-color: rgba(255,255,255, .5);
+  position: relative;
+  display: block;
+  margin: 100px auto;
+  width: 200px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+#approve, #disapprove {
+  margin-right: 10px
+}
+
+.approval,.disapproval {
+  display: block;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  bottom: 0;
+  font-size: 40px;
+}
+.approval {
+  left: 0;
+  background-color: rgba(0,255,0,.7);
+}
+
+.disapproval {
+  right: 0;
+  background-color: rgba(255,0,0,.7);
+}

@@ -1,0 +1,14 @@
+<%= form_tag('/save') do %>
+  <label for='approve'>
+    <input type='radio' id='approve' required=true name='approval' value=1 />
+    I Approve
+  </label>
+  <label for='disapprove'>
+    <input type='radio' id='disapprove' required=true name='approval' value=0 />
+    I Disapprove
+  </label>
+  <%= submit_tag 'Submit' %>
+  <% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+  <% end %>
+<% end %>
