@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   root 'application#index'
   post '/save' => 'application#save'
   get '/info' => 'application#info'
+  get '/heatmap' => 'application#heatmap'
+  get '/submitted' => 'application#submitted'
 end

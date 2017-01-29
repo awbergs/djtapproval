@@ -6,7 +6,7 @@
 </script>
 <div class='approval' style='width: <%= @approval_percentage %>%'><%= @approval_percentage %>%<br/>Approve</div>
 <div class='disapproval' style='width: <%= 100 - @approval_percentage %>%'><%= 100 - @approval_percentage %>%<br/>Disapprove</div>
-<%= form_tag('/save', id: 'approval-form') do %>
+<%= form_tag('/save', id: 'approval-form', class: 'panel') do %>
   <p>President Donald J. Trump</p>
   <label for='approve'>
     <input type='radio' id='approve' required=true name='approval' value=1 <%= "checked=checked" if @last_submission && @last_submission.approval %> />
@@ -34,6 +34,7 @@
     <small><%= pluralize(@unique_disapprovals, "total unique disapprovals") %></small>
   </p>
 <% end %>
-<div class='social'>
+<div class='panel'>
   <div class="fb-share-button" data-href="http://www.djtrumpapproval.com/" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.djtrumpapproval.com%2F&amp;src=sdkpreparse">Share</a></div>
 </div>
+
