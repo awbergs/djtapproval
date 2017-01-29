@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
 
   def index
     @last_submission = Submission.where(ip_address:request.remote_ip).last
+    @unique_votes = Submission.distinct(:ip_address).count
+    @unique_approvals = Submission.where(approval: true).distinct(:ip_address).count
+    @unique_disapprovals = Submission.where(approval: false).distinct(:ip_address).count
   end
 
   def save
