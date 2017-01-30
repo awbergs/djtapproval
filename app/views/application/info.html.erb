@@ -1,19 +1,27 @@
 <div class='container'>
-  <h1>How This Works</h1>
+  <div class='page-header'>
+    <h1>How This Works</h1>
+  </div>
   <ul>
-    <li>We collect the information you submit on the form and link that information with your IP address.</li>
-    <li>You are only allowed to make a submission once every 24 hours.</li>
-    <li>The main page displays information gathered from the last 24 hours.</li>
+    <li><p class='lead'>You click Approve or Disapprove.</p></li>
+    <li><p class='lead'>We save your vote in the database.</p></li>
+    <li><p class='lead'>We show the proportion of votes for the previous 24-hour window.</p></li>
+    <li><p class='lead'>You are allowed to vote once every day.</p></li>
   </ul>
 
-  <h2>Can I submit more than once?</h2>
-  <p>Yes! This is encouraged, though you can only submit your opinion once every 24 hours.</p>
+  <h2></h2>
 
-  <h2>What is the goal?</h2>
+  <h3>Can I vote more than once?</h3>
+  <p>Yes! This is encouraged though limited to once per day.</p>
+
+  <h3>What is the goal?</h3>
   <p>President Trump has a tendency to care about what people think, and especially what the American public thinks of him. I hope that this website can eventually be visible enough to provide him one source of input from the public at large.</p>
 
-  <h2 id='facebook'>Why do I need to authenticate with Facebook?</h2>
-  <p>We are trying to make sure that real people are voting and only voting once every 24 hours. Our previous implementation used your IP address, but that is too easy to spoof. We promise that we don't save any personal information about you, and you can see for yourself; the source code is <a href='https://github.com/awbergs/djtapproval'>hosted publicly</a>.</p>
+  <h3 id='facebook'>Why do you need my Facebook UUID?</h3>
+  <p>We are trying to make sure that real people are voting and only voting once every day. Our previous implementation used your IP address, but that is way too easy to spoof. We promise that we don't save any personal information about you, and you can see for yourself; the source code is <a href='https://github.com/awbergs/djtapproval' target=_blank>hosted publicly</a>.</p>
+
+  <h3>Are you saving my personal information somewhere?</h3>
+  <p><b>We do <i>not</i> store any of your personal information</b>. Our goal is to reliably measure the public opinion of our current President. If you are concerned that we might be stealing your information or have a general question about security, drop us a line at <a href='mailto: trumpapproval@gmail.com'>trumpapproval@gmail.com</a> or <a href='https://github.com/awbergs/djtapproval' target=_blank>check out our github repository</a>.</p>
 
   <a href='/'>&larr; Main page</a>
 </div>

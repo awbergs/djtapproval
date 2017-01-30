@@ -24,8 +24,8 @@
 </div>
 <div class='container'>
   <div class='vote-container'>
-    <h4 class='text-center text-muted'>Cast your vote now on how you feel about President Trump. You can vote once every 24 hours.</h4>
-    <% if @last_submission && @last_submission.created_at.to_date >= Date.current %>
+    <h4 class='text-center text-muted'>Cast your vote now on how you feel about President Trump. You can vote once every day.</h4>
+    <% if false && @last_submission && @last_submission.created_at.to_date >= Date.current %>
       <div class='row thank-you'>
         <div class='col-md-1'></div>
         <% if @last_submission.approval? %>
@@ -34,7 +34,7 @@
           </div>
         <% end %>
         <div class='col-md-7 text-center'>
-          <p>Thank you! Your <%= @last_submission.approval? ? 'approval' : 'disapproval' %> vote has been counted!<br/>Remember to vote again after 24 hours.</p>
+          <p>Thank you! Your <%= @last_submission.approval? ? 'approval' : 'disapproval' %> vote has been counted!<br/>Remember to vote again tomorrow.</p>
           <h4><a href='javascript:void(0);' id='share-link'>Share your vote</a> or simply help us spread the word</h4>
         </div>
         <% if !@last_submission.approval? %>
