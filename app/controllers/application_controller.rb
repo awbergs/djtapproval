@@ -33,10 +33,12 @@ class ApplicationController < ActionController::Base
     if Submission.can_submit?(fb_uid)
       approval_choice = params_hash["approval"]
       Submission.create(approval: approval_choice == "1", ip_address: request.remote_ip, fb_uid: fb_uid)
-      redirect_to root_url(approval: approval_choice)
+      flash[:approval] = approval_choice
+      redirect_to root_url
     else
       flash[:notice] = 'You must wait at least 24 hours between submissions.'
-      redirect_to root_url(too: 'early')
+      flash[:too] = "early"
+      redirect_to root_url
     end
   end
 
