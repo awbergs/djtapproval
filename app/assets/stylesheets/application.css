@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
 .panel {
   padding: 20px;
   background-color: rgba(255,255,255, .5);
@@ -33,39 +34,109 @@ label {
 #approve, #disapprove {
   margin-right: 10px
 }
-
-.approval,.disapproval {
+.approval-bar {
+  border: 4px solid #fff;
+  overflow: hidden;
+  border-radius: 10px;
+  font-size: 16px;
+  color: rgba(255,255,255,.8);
+  text-transform: uppercase;
+}
+.approval-bar .percentage {
+  font-size: 24px;
   display: block;
-  position: fixed;
+  color:#fff;
+}
+.approval,.disapproval {
+  display: inline-block;
   text-align: center;
-  top: 0;
-  bottom: 0;
-  font-size: 40px;
+  float: left;
+  padding: 10px;
 }
 .approval {
-  left: 0;
-  background-color: rgba(0,255,0,.7);
+  border-right: 2px solid #fff;
+  background-color: #3fa142;
 }
 
 .disapproval {
-  right: 0;
-  background-color: rgba(255,0,0,.7);
+  border-left: 2px solid #fff;
+  background-color: #f1524b;
 }
 
 .footer {
   display: block;
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
   text-align: center;
-  opacity: .7;
 }
-.footer p {
-  margin: 5px 0;
+.glyphicon-heart {
+  color: #cf5151;
 }
-.vote-counted {
-  padding: 10px;
+.fb_iframe_widget > span {
+  vertical-align: baseline !important;
+}
+.vote-container {
+  padding: 40px 0;
+}
+.tally-container {
+  padding: 20px;
+}
+.container-fluid {
+  padding: 0;
+}
+.tally-container.approve {
+  background: linear-gradient(#d1e8d2, #fff);
+}
+.tally-container.disapprove {
+  background: linear-gradient(#fcd4d2, #fff);
+}
+.approval-votes {
+  margin-top: 40px;
+}
+.approval-votes span {
+  color: #cbcecf;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: bold;
+}
+.btn-approval {
+  border-radius: 10px;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding: 20px 40px;
+  width: 225px;
+  margin: 10px;
+}
+.btn-success {
+  background-color: #e8f3e9;
+  border: 4px solid #3fa142;
+  color: #3fa142;
+}
+.btn-danger {
+  background-color: #fdeaea;
+  border: 4px solid #f1524b;
+  color: #f1524b;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+.thank-you {
+  padding: 20px;
+}
+.thank-you h4{
+  margin: 20px 0 0 0;
+}
+.thank-you .i-disapprove,
+.thank-you .i-approve {
+  display: block;
   text-align: center;
-  background-color: rgba(0,255,0,.5);
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 35px;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+.thank-you .i-disapprove {
+  background-color: #f1524b;
+}
+.thank-you .i-approve {
+  background-color: #3fa142;
 }

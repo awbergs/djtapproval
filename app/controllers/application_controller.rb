@@ -1,44 +1,15 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  before_filter :set_session
   before_filter :set_approval_ratio, only: [:index, :submitted]
   before_filter :validate_access, only: [:submitted]
 
   def index
-    @last_submission = Submission.where(ip_address:request.remote_ip).last
+    @last_submission = Submission.last_submission(@session_id)
     @unique_votes = Submission.distinct(:ip_address).count
     @unique_approvals = Submission.where(approval: true).distinct(:ip_address).count
     @unique_disapprovals = Submission.where(approval: false).distinct(:ip_address).count
-  end
-
-  def submitted
-    @last_submission = Submission.where(ip_address:request.remote_ip).last
-    @unique_votes = Submission.distinct(:ip_address).count
-    @unique_approvals = Submission.where(approval: true).distinct(:ip_address).count
-    @unique_disapprovals = Submission.where(approval: false).distinct(:ip_address).count
-    render 'index'
-  end
-
-  def save
-    ip_address = request.remote_ip
-    valid = false
-    if Submission.can_submit?(ip_address)
-      if validate_captcha
-        valid = true
-        session[:validated] = true
-        flash[:success] = 'Your vote has been counted. You can vote again in 24 hours.'
-        Submission.create(approval: params[:approval] == "1", ip_address: request.remote_ip)
-      else
-        flash[:notice] = 'Invalid captcha'
-      end
-    else
-      flash[:notice] = 'You must wait at least 24 hours between submissions.'
-    end
-    if valid
-      redirect_to "/submitted?approval=#{params[:approval]}"
-    else
-      redirect_to root_url
-    end
   end
 
   def heatmap
@@ -53,7 +24,26 @@ class ApplicationController < ActionController::Base
     @unique_disapprovals = unique_disapprovals.map {|ip| Geokit::Geocoders::IpGeocoder.geocode(ip)}
   end
 
+  def oauth
+    auth_hash = request.env['omniauth.auth']
+    fb_uid = auth_hash['uid']
+    session[:uid] = fb_uid
+    params_hash = request.env['omniauth.params']
+
+    if Submission.can_submit?(fb_uid)
+      approval_choice = params_hash["approval"]
+      Submission.create(approval: approval_choice == "1", ip_address: request.remote_ip, fb_uid: fb_uid)
+    else
+      flash[:notice] = 'You must wait at least 24 hours between submissions.'
+    end
+    redirect_to root_url
+  end
+
   private
+
+  def set_session
+    @session_id = session[:uid]
+  end
 
   def set_approval_ratio
     @submissions = Submission.where(:created_at.gt => DateTime.current.utc - 1.day)
@@ -77,7 +67,7 @@ class ApplicationController < ActionController::Base
   end
 
   def validate_access
-    unless session[:validated]
+    unless session[:uid]
       redirect_to root_url
     end
   end
