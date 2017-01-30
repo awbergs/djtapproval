@@ -8,7 +8,7 @@
   <div class='vote-container'>
     <h1 class='text-center'>President Trump Approval Ratings</h1>
     <h4 class='text-center text-muted'>Cast your vote now on how you feel about President Trump. You can vote once every 24 hours.</h4>
-    <% if @last_submission %>
+    <% if @last_submission && @last_submission.created_at.to_date == Date.current %>
       <div class='row thank-you'>
         <div class='col-md-1'></div>
         <% if @last_submission.approval? %>
