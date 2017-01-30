@@ -10,7 +10,7 @@ class Submission
     if Rails.env.development?
     return !self.where(fb_uid: fb_uid).where(:created_at.gt => DateTime.current.utc - 1.minute).any?
     end
-    return !self.where(fb_uid: fb_uid).where(:created_at.gt => DateTime.current.utc - 1.day).any?
+    return !self.where(fb_uid: fb_uid).where(:created_at.gt => Date.current.utc).any?
   end
 
   def self.last_submission(fb_uid)
