@@ -38,7 +38,7 @@
   </div>
 </div>
 <div class='container-fluid'>
-  <div class='tally-container approve'> <!-- bg color gradient -->
+  <div class='tally-container <%= @approval_percentage > 50 ? 'approve' : 'disapprove' %>'> <!-- bg color gradient -->
     <p class='text-center mt-10'>These real time ratings reflect a 24-hour rolling period. <a href='/info'>How does this work?</a></p>
     <div class='approval-bar'>
       <div class='approval' style='width: <%= @approval_percentage %>%'>
