@@ -24,7 +24,6 @@
 </div>
 <div class='container'>
   <div class='vote-container'>
-    <h4 class='text-center text-muted'>Cast your vote now on how you feel about President Trump. You can vote once every day.</h4>
     <% if @last_submission && @last_submission.created_at.to_date >= Date.current %>
       <div class='row thank-you'>
         <div class='col-md-1'></div>
@@ -44,6 +43,7 @@
         <% end %>
       </div>
     <% else %>
+      <h4 class='text-center text-muted'>Cast your vote now on how you feel about President Trump. You can vote once every day.</h4>
       <div class='approval-votes text-center'>
         <h4>Vote with Facebook</h4>
         <p class='text-center'><small>Why facebook? We just want to make sure you're a real person, <a href='/info#facebook'>we don't save any of your personal information</a>.</small></p>
