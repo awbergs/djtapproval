@@ -57,6 +57,13 @@
         In the last 24 hours there have been <%= @submissions.count %> total unique votes.
       <% end %>
     </p>
+    <p class='text-center mt-10'>
+      <%= pluralize(@unique_votes, "total unique vote") %>
+      <br/>
+      <%= pluralize(@unique_approvals, "total unique approval") %>
+      <br/>
+      <%= pluralize(@unique_disapprovals, "total unique disapproval") %>
+    </p>
   </div>
 </div>
 <div class='container'>
