@@ -50,12 +50,6 @@
         <%= link_to "I Approve", "/auth/facebook?approval=1", class: 'btn btn-success btn-approval' %>
         <span class='hidden-sm hidden-xs'>&larr; Vote &rarr;</span>
         <%= link_to "I Disapprove", "/auth/facebook?approval=0", class: 'btn btn-danger btn-approval'%>
-        <h2><small>OR</small></h2>
-        <h4>Vote by Email</h4>
-        <p class='text-center'><small>We <a href='/info#email-validation'>will not save your email</a> in any database, we just want to <a href='/info#email-voting'>send you a link</a> in order to confirm your vote.</small></p>
-        <%= link_to "I Approve", "/auth/facebook?approval=1", class: 'btn btn-success btn-approval' %>
-        <span class='hidden-sm hidden-xs'>&larr; Vote &rarr;</span>
-        <%= link_to "I Disapprove", "/auth/facebook?approval=0", class: 'btn btn-danger btn-approval'%>
       </div>
     <% end %>
   </div>
