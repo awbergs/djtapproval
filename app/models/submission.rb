@@ -14,6 +14,7 @@ class Submission
   end
 
   def self.last_submission(fb_uid)
+    return nil unless fb_uid.present?
     self.where(fb_uid: fb_uid).order(&:created_at).last
   end
 end
