@@ -43,11 +43,6 @@ class ApplicationController < ActionController::Base
       redirect_to root_url(submitted:approval_choice)
     else
       last_submission = Submission.last_submission(fb_uid)
-      p "CANNOT SUBMIT"
-      p "CANNOT SUBMIT"
-      p "CANNOT SUBMIT"
-      p "LAST SUBMISSION"
-      p last_submission
       session[:last_submission_id] = last_submission.id if last_submission.present?
       flash[:alert] = 'You can only vote once every day. Come back tomorrow!'
       flash[:too] = "early"
