@@ -42,6 +42,8 @@ class ApplicationController < ActionController::Base
       flash[:approval] = approval_choice
       redirect_to root_url(submitted:approval_choice)
     else
+      last_submission = Submission.last_submission(fb_uid)
+      session[:last_submission_id] = last_submission.id if last_submission.present?
       flash[:alert] = 'You must wait at least 24 hours between submissions.'
       flash[:too] = "early"
       redirect_to root_url
