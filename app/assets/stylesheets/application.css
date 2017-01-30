@@ -64,6 +64,7 @@ label {
 }
 
 .footer {
+  padding: 20px;
   display: block;
   text-align: center;
 }
@@ -72,9 +73,6 @@ label {
 }
 .fb_iframe_widget > span {
   vertical-align: baseline !important;
-}
-.vote-container {
-  padding: 40px 0;
 }
 .tally-container {
   padding: 20px;
@@ -139,4 +137,7 @@ label {
 }
 .thank-you .i-approve {
   background-color: #3fa142;
+}
+.alert {
+  margin-bottom: 0;
 }

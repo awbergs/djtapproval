@@ -8,7 +8,7 @@ class Submission
 
   def self.can_submit?(fb_uid)
     if Rails.env.development?
-      return true
+    return !self.where(fb_uid: fb_uid).where(:created_at.gt => DateTime.current.utc - 1.minute).any?
     end
     return !self.where(fb_uid: fb_uid).where(:created_at.gt => DateTime.current.utc - 1.day).any?
   end

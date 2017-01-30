@@ -6,7 +6,11 @@ class ApplicationController < ActionController::Base
   before_filter :validate_access, only: [:submitted]
 
   def index
-    @last_submission = Submission.last_submission(@session_id)
+    if session[:last_submission_id]
+      @last_submission = Submission.find(session[:last_submission_id])
+    else
+      @last_submission = nil
+    end
     @unique_votes = Submission.distinct(:ip_address).count
     @unique_approvals = Submission.where(approval: true).distinct(:ip_address).count
     @unique_disapprovals = Submission.where(approval: false).distinct(:ip_address).count
@@ -32,11 +36,13 @@ class ApplicationController < ActionController::Base
 
     if Submission.can_submit?(fb_uid)
       approval_choice = params_hash["approval"]
-      Submission.create(approval: approval_choice == "1", ip_address: request.remote_ip, fb_uid: fb_uid)
+      submission = Submission.create(approval: approval_choice == "1", ip_address: request.remote_ip, fb_uid: fb_uid)
+      session[:last_submission_id] = submission.id
+      flash[:notice] = "Your vote has been counted."
       flash[:approval] = approval_choice
-      redirect_to root_url
+      redirect_to root_url(submitted:approval_choice)
     else
-      flash[:notice] = 'You must wait at least 24 hours between submissions.'
+      flash[:alert] = 'You must wait at least 24 hours between submissions.'
       flash[:too] = "early"
       redirect_to root_url
     end

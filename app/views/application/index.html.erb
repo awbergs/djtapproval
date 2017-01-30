@@ -4,41 +4,11 @@
     document.querySelector('#approval-form').submit();
   }
 </script>
-<div class='container'>
-  <div class='vote-container'>
-    <h1 class='text-center'>President Trump Approval Ratings</h1>
-    <h4 class='text-center text-muted'>Cast your vote now on how you feel about President Trump. You can vote once every 24 hours.</h4>
-    <% if @last_submission && @last_submission.created_at.to_date == Date.current %>
-      <div class='row thank-you'>
-        <div class='col-md-1'></div>
-        <% if @last_submission.approval? %>
-          <div class='col-md-3'>
-            <div class='i-approve'>I Approve</div>
-          </div>
-        <% end %>
-        <div class='col-md-7 text-center'>
-          <p>Thank you! Your <%= @last_submission.approval? ? 'approval' : 'disapproval' %> vote has been counted!<br/>Remember to vote again after 24 hours.</p>
-          <h4><a href='javascript:void(0);' id='share-link'>Share your vote</a> or simply help us spread the word</h4>
-          <%= render partial: 'social' %>
-        </div>
-        <% if !@last_submission.approval? %>
-          <div class='col-md-3'>
-            <div class='i-disapprove'>I Disapprove</div>
-          </div>
-        <% end %>
-      </div>
-    <% else %>
-      <div class='approval-votes text-center'>
-        <%= link_to "I Approve", "/auth/facebook?approval=1", class: 'btn btn-success btn-approval' %>
-        <span class='hidden-sm hidden-xs'>&larr; Vote &rarr;</span>
-        <%= link_to "I Disapprove", "/auth/facebook?approval=0", class: 'btn btn-danger btn-approval'%>
-      </div>
-    <% end %>
-    <p class='text-center'><small>Why facebook? We just want to make sure you're a real person, <a href='/info#facebook'>we don't save any of your personal information</a>.</small></p>
-  </div>
-</div>
 <div class='container-fluid'>
-  <div class='tally-container <%= @approval_percentage > 50 ? 'approve' : 'disapprove' %>'> <!-- bg color gradient -->
+  <div class='tally-container <%= @approval_percentage > 50 ? 'approve' : 'disapprove' %>'>
+    <div class="page-header text-center">
+      <h1>President Trump Approval Poll</h1>
+    </div>
     <p class='text-center mt-10'>These real time ratings reflect a 24-hour rolling period. <a href='/info'>How does this work?</a></p>
     <div class='approval-bar'>
       <div class='approval' style='width: <%= @approval_percentage %>%'>
@@ -50,20 +20,44 @@
         Disapprove
       </div>
     </div>
-    <p class='text-center mt-10'>
-      <% if @submissions.count == 1 %>
-        In the last 24 hours there has been 1 unique vote.
-      <% else %>
-        In the last 24 hours there have been <%= @submissions.count %> total unique votes.
-      <% end %>
-    </p>
-    <p class='text-center mt-10'>
-      <%= pluralize(@unique_votes, "total unique vote") %>
-      <br/>
-      <%= pluralize(@unique_approvals, "total unique approval") %>
-      <br/>
-      <%= pluralize(@unique_disapprovals, "total unique disapproval") %>
-    </p>
+  </div>
+</div>
+<div class='container'>
+  <div class='vote-container'>
+    <h4 class='text-center text-muted'>Cast your vote now on how you feel about President Trump. You can vote once every 24 hours.</h4>
+    <% if @last_submission && @last_submission.created_at.to_date < Date.current %>
+      <div class='row thank-you'>
+        <div class='col-md-1'></div>
+        <% if @last_submission.approval? %>
+          <div class='col-md-3'>
+            <div class='i-approve'>I Approve</div>
+          </div>
+        <% end %>
+        <div class='col-md-7 text-center'>
+          <p>Thank you! Your <%= @last_submission.approval? ? 'approval' : 'disapproval' %> vote has been counted!<br/>Remember to vote again after 24 hours.</p>
+          <h4><a href='javascript:void(0);' id='share-link'>Share your vote</a> or simply help us spread the word</h4>
+        </div>
+        <% if !@last_submission.approval? %>
+          <div class='col-md-3'>
+            <div class='i-disapprove'>I Disapprove</div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class='approval-votes text-center'>
+        <h4>Vote with Facebook</h4>
+        <p class='text-center'><small>Why facebook? We just want to make sure you're a real person, <a href='/info#facebook'>we don't save any of your personal information</a>.</small></p>
+        <%= link_to "I Approve", "/auth/facebook?approval=1", class: 'btn btn-success btn-approval' %>
+        <span class='hidden-sm hidden-xs'>&larr; Vote &rarr;</span>
+        <%= link_to "I Disapprove", "/auth/facebook?approval=0", class: 'btn btn-danger btn-approval'%>
+        <h2><small>OR</small></h2>
+        <h4>Vote by Email</h4>
+        <p class='text-center'><small>We <a href='/info#email-validation'>will not save your email</a> in any database, we just want to <a href='/info#email-voting'>send you a link</a> in order to confirm your vote.</small></p>
+        <%= link_to "I Approve", "/auth/facebook?approval=1", class: 'btn btn-success btn-approval' %>
+        <span class='hidden-sm hidden-xs'>&larr; Vote &rarr;</span>
+        <%= link_to "I Disapprove", "/auth/facebook?approval=0", class: 'btn btn-danger btn-approval'%>
+      </div>
+    <% end %>
   </div>
 </div>
 <div class='container'>

@@ -34,11 +34,21 @@
   </head>
 
   <body>
+  <% if flash[:alert] %>
+    <div class="alert alert-danger" role="alert">
+      <strong>Oops&hellip;</strong> <%= flash[:alert] %>
+    </div>
+  <% end %>
+  <% if flash[:notice] %>
+    <div class="alert alert-success" role="alert">
+      <strong>Success!</strong> <%= flash[:notice] %>
+    </div>
+  <% end %>
   <div id="fb-root"></div>
     <script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=<%= ENV['DJTAPPROVAL_FB_APP_ID'] %>";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script>
     <%= yield %>
     <div class='footer'>
-      <p>Disclaimer: This poll is not affiliated with any political party or interest group.<br/>This poll is to provide a simple and accurate view of how citizens of the United States currently approve or disapprove of Donald J. Trump.<br/><b>Question?</b> <a href='mailto:trumpapproval@gmail.com'>trumpapproval@gmail.com</a></p>
+      <p>This poll is not affiliated with any political party or interest group.<br/>This poll is to provide a simple and accurate view of how citizens of the United States currently approve or disapprove of Donald J. Trump.<br/><b>Question?</b> <a href='mailto:trumpapproval@gmail.com'>trumpapproval@gmail.com</a></p>
       <p>Copyright &copy; 2017 djtrumpapproval.com. Made with <i class='glyphicon glyphicon-heart'></i> in the United States</p>
     </div>
   </body>
