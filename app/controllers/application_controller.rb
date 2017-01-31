@@ -11,9 +11,9 @@ class ApplicationController < ActionController::Base
     else
       @last_submission = nil
     end
-    @unique_votes = Submission.distinct(:ip_address).count
-    @unique_approvals = Submission.where(approval: true).distinct(:ip_address).count
-    @unique_disapprovals = Submission.where(approval: false).distinct(:ip_address).count
+    @votes_cast = Submission.count
+    @total_approvals = Submission.where(approval: true).distinct(:ip_address).count
+    @total_disapprovals = Submission.where(approval: false).distinct(:ip_address).count
   end
 
   def heatmap

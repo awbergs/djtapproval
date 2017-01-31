@@ -20,6 +20,17 @@
         Disapprove
       </div>
     </div>
+    <p class='text-center'>
+    <small>
+    Votes in last 24 hours: <%= @submissions.count %>
+    <br/>
+    Votes to date: <%= @votes_cast %>
+    <br/>
+    Approvals to date: <%= @total_approvals %>
+    <br/>
+    Disapprovals to date: <%= @total_disapprovals %>
+    </small>
+    </p>
   </div>
 </div>
 <div class='container'>
