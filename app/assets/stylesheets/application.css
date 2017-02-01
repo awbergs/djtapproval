@@ -86,9 +86,6 @@ label {
 .tally-container.disapprove {
   background: linear-gradient(#fcd4d2, #fff);
 }
-.approval-votes {
-  margin-top: 40px;
-}
 .approval-votes span {
   color: #cbcecf;
   text-transform: uppercase;

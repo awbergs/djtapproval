@@ -44,7 +44,7 @@
           </div>
         <% end %>
         <div class='col-md-7 text-center'>
-          <p>Thank you! Your <%= @last_submission.approval? ? 'approval' : 'disapproval' %> vote has been counted!<br/>Remember to vote again tomorrow.</p>
+          <p class='lead'>Thank you! Your <%= @last_submission.approval? ? 'approval' : 'disapproval' %> vote has been counted!<br/>Remember to vote again tomorrow.</p>
           <h4><a href='javascript:void(0);' id='share-link'>Share your vote</a> or simply help us spread the word</h4>
         </div>
         <% if !@last_submission.approval? %>
@@ -54,14 +54,13 @@
         <% end %>
       </div>
     <% else %>
-      <h4 class='text-center text-muted'>Cast your vote now on how you feel about President Trump. You can vote once every day.</h4>
       <div class='approval-votes text-center'>
-        <h4>Vote with Facebook</h4>
-        <p class='text-center'><small>Why facebook? We just want to make sure you're a real person, <a href='/info#facebook'>we don't save any of your personal information</a>.</small></p>
+        <p class='text-center text-muted lead'>How do you feel about President Donald Trump today?</p>
         <%= link_to "I Approve", "/auth/facebook?approval=1", class: 'btn btn-success btn-approval' %>
         <span class='hidden-sm hidden-xs'>&larr; Vote &rarr;</span>
         <%= link_to "I Disapprove", "/auth/facebook?approval=0", class: 'btn btn-danger btn-approval'%>
-
+        <h4>Vote with Facebook</h4>
+        <p class='text-center'><small>Why facebook? We just want to make sure you're a real person, <a href='/info#facebook'>we don't save any of your personal information</a>.</small></p>
       </div>
     <% end %>
   </div>
