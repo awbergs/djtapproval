@@ -8,6 +8,6 @@ task nightly_tweet: :environment do
       config.access_token        = ENV["DJTAPP_TWITTER_ACCESS_TOKEN"]
       config.access_token_secret = ENV["DJTAPP_TWITTER_ACCESS_SECRET"]
     end
-    client.update("::Nightly Update:: @POTUS @realDonaldTrump approval rating is #{approval_percentage}%. What do you think? Be heard @ www.djtrumpapproval.com #politics")
+    client.update("#{approval_percentage}% approval rating for @POTUS @realDonaldTrump. What do you think? Be heard @ www.djtrumpapproval.com #politics")
   end
 end
