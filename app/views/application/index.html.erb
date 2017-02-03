@@ -11,14 +11,18 @@
     </div>
     <p class='text-center mt-10'>These real time ratings reflect a 24-hour rolling period. <a href='/info'>How does this work?</a></p>
     <div class='approval-bar'>
-      <div class='approval' style='width: <%= @approval_percentage %>%'>
-        <span class='percentage'><%= @approval_percentage.round(2) %>%</span>
-        Approve
-      </div>
-      <div class='disapproval' style='width: <%= 100 - @approval_percentage %>%'>
-        <span class='percentage'><%= (100 - @approval_percentage).round(2) %>%</span>
-        Disapprove
-      </div>
+      <% unless @approval_percentage == 0 %>
+        <div class='approval' style='width: <%= @approval_percentage %>%'>
+          <span class='percentage'><%= @approval_percentage.round(2) %>%</span>
+          Approve
+        </div>
+      <% end %>
+      <% unless @approval_percentage == 1 %>
+        <div class='disapproval' style='width: <%= 100 - @approval_percentage %>%'>
+          <span class='percentage'><%= (100 - @approval_percentage).round(2) %>%</span>
+          Disapprove
+        </div>
+      <% end %>
     </div>
     <p class='text-center'>
     <small>
